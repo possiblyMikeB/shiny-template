@@ -1,7 +1,7 @@
 {
     "display-name": "Display Name",
     "description": "This is where a decent description of the application would go.",
-    "logo-url": "logo.png",
+    "image-file": "logo.png",
     "access-groups": [
 	"scientists",
 	"mathematicians"
