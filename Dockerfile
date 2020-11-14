@@ -1,6 +1,6 @@
-FROM openanalytics/r-base
+FROM rocker/r-base
 
-MAINTAINER Tobias Verbeke "tobias.verbeke@openanalytics.eu"
+MAINTAINER Michael Blackmon "miblackmon@davidson.edu"
 
 # system libraries of general use
 RUN apt-get update && apt-get install -y \
@@ -12,24 +12,21 @@ RUN apt-get update && apt-get install -y \
     libxt-dev \
     libssl-dev \
     libssh2-1-dev \
-    libssl1.0.0
+    libssl1.1
 
-# system library dependency for the euler app
+# system library dependency for application
 RUN apt-get update && apt-get install -y \
     libmpfr-dev
 
-# basic shiny functionality
-RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
-
-# install dependencies of the euler app
-RUN R -e "install.packages('Rmpfr', repos='https://cloud.r-project.org/')"
+# R packages required by application 
+RUN install2.r shiny rmarkdown Rmpfr
 
 # copy the app to the image
-RUN mkdir /root/euler
-COPY euler /root/euler
+RUN mkdir /root/repo
+COPY repo /root/repo
 
 COPY Rprofile.site /usr/lib/R/etc/
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/root/euler')"]
+CMD ["R", "-e", "shiny::runApp('/root/repo/app')"]
