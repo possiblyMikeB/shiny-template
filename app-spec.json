@@ -18,6 +18,6 @@
 	"VAR1": "VALUE1",
 	"VAR2": "VALUE2"
     },
-    "containter-cmd": [ "R", "-e", "shiny::runApp('~/repo/app')" ]
+    "container-cmd": [ "R", "-e", "shiny::runApp('~/repo/app')" ]
 }
     
