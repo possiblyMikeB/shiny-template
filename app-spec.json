@@ -1,14 +1,23 @@
 {
     "display-name": "Display Name",
     "description": "This is where a decent description of the application would go.",
-    "access-groups": ["scientists", "mathematicians"],
+    "logo-url": "logo.png",
+    "access-groups": [
+	"scientists",
+	"mathematicians"
+    ],
     "container-privileged": false,
     "container-memory-request": "256m",
     "container-memory-limit": "512m",
     "container-cpu-limit": "0.25",
+    "container-network": "bridge",
+    "container-volumes": {
+	"/local/path:/containter/path"
+    },
     "container-env": {
 	"VAR1": "VALUE1",
 	"VAR2": "VALUE2"
-    }
+    },
+    "containter-cmd": [ "R", "-e", "shiny::runApp('~/repo/app')" ]
 }
     
